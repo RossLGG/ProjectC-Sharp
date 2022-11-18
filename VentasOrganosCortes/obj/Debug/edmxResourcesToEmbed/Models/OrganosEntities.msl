@@ -1,0 +1,115 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="VentaOrganosModelStoreContainer" CdmEntityContainer="VentaOrganosEntities">
+    <EntitySetMapping Name="Cliente">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Cliente">
+        <MappingFragment StoreEntitySet="Cliente">
+          <ScalarProperty Name="clie_id" ColumnName="clie_id" />
+          <ScalarProperty Name="clie_nick" ColumnName="clie_nick" />
+          <ScalarProperty Name="clie_email" ColumnName="clie_email" />
+          <ScalarProperty Name="clie_clave" ColumnName="clie_clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Comuna">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Comuna">
+        <MappingFragment StoreEntitySet="Comuna">
+          <ScalarProperty Name="comu_id" ColumnName="comu_id" />
+          <ScalarProperty Name="comu_nomb" ColumnName="comu_nomb" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Direccion">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Direccion">
+        <MappingFragment StoreEntitySet="Direccion">
+          <ScalarProperty Name="dire_id" ColumnName="dire_id" />
+          <ScalarProperty Name="dire_calle1" ColumnName="dire_calle1" />
+          <ScalarProperty Name="dire_calle2" ColumnName="dire_calle2" />
+          <ScalarProperty Name="dire_clie_id" ColumnName="dire_clie_id" />
+          <ScalarProperty Name="dire_comu_id" ColumnName="dire_comu_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Medio_Pago">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Medio_Pago">
+        <MappingFragment StoreEntitySet="Medio_Pago">
+          <ScalarProperty Name="medi_id" ColumnName="medi_id" />
+          <ScalarProperty Name="medi_tipo" ColumnName="medi_tipo" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Orden_Compra">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Orden_Compra">
+        <MappingFragment StoreEntitySet="Orden_Compra">
+          <ScalarProperty Name="orde_compra" ColumnName="orde_compra" />
+          <ScalarProperty Name="orde_fecha" ColumnName="orde_fecha" />
+          <ScalarProperty Name="orde_clie_id" ColumnName="orde_clie_id" />
+          <ScalarProperty Name="orde_medi_id" ColumnName="orde_medi_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="prod_id" ColumnName="prod_id" />
+          <ScalarProperty Name="prod_cora" ColumnName="prod_cora" />
+          <ScalarProperty Name="prod_pulm" ColumnName="prod_pulm" />
+          <ScalarProperty Name="prod_rinon" ColumnName="prod_rinon" />
+          <ScalarProperty Name="prod_corn" ColumnName="prod_corn" />
+          <ScalarProperty Name="prod_clie_id" ColumnName="prod_clie_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Sangre">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Sangre">
+        <MappingFragment StoreEntitySet="Sangre">
+          <ScalarProperty Name="sang_id" ColumnName="sang_id" />
+          <ScalarProperty Name="sang_tipo" ColumnName="sang_tipo" />
+          <ScalarProperty Name="sang_cant" ColumnName="sang_cant" />
+          <ScalarProperty Name="sang_infec" ColumnName="sang_infec" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Servicio">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Servicio">
+        <MappingFragment StoreEntitySet="Servicio">
+          <ScalarProperty Name="serv_id" ColumnName="serv_id" />
+          <ScalarProperty Name="serv_prec" ColumnName="serv_prec" />
+          <ScalarProperty Name="serv_vend_id" ColumnName="serv_vend_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="sysdiagrams">
+      <EntityTypeMapping TypeName="VentaOrganosModel.sysdiagrams">
+        <MappingFragment StoreEntitySet="sysdiagrams">
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+          <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+          <ScalarProperty Name="version" ColumnName="version" />
+          <ScalarProperty Name="definition" ColumnName="definition" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Vendedor">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Vendedor">
+        <MappingFragment StoreEntitySet="Vendedor">
+          <ScalarProperty Name="vend_id" ColumnName="vend_id" />
+          <ScalarProperty Name="vend_nick" ColumnName="vend_nick" />
+          <ScalarProperty Name="vend_email" ColumnName="vend_email" />
+          <ScalarProperty Name="vend_clave" ColumnName="vend_clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Detalle">
+      <EntityTypeMapping TypeName="VentaOrganosModel.Detalle">
+        <MappingFragment StoreEntitySet="Detalle">
+          <ScalarProperty Name="detal_prod" ColumnName="detal_prod" />
+          <ScalarProperty Name="detal_comp_id" ColumnName="detal_comp_id" />
+          <ScalarProperty Name="detal_prod_id" ColumnName="detal_prod_id" />
+          <ScalarProperty Name="detal_serv_id" ColumnName="detal_serv_id" />
+          <ScalarProperty Name="detal_sang_id" ColumnName="detal_sang_id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

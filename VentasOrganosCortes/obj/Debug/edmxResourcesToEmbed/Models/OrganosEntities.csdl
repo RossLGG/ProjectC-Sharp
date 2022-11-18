@@ -1,0 +1,281 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="VentaOrganosModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityType Name="Cliente">
+    <Key>
+      <PropertyRef Name="clie_id" />
+    </Key>
+    <Property Name="clie_id" Type="Int32" Nullable="false" />
+    <Property Name="clie_nick" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="clie_email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="clie_clave" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Cliente" FromRole="Cliente" ToRole="Direccion" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Productos_Cliente" FromRole="Cliente" ToRole="Productos" />
+  </EntityType>
+  <EntityType Name="Comuna">
+    <Key>
+      <PropertyRef Name="comu_id" />
+    </Key>
+    <Property Name="comu_id" Type="Int32" Nullable="false" />
+    <Property Name="comu_nomb" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Direccion" Relationship="Self.FK_Direccion_Comuna" FromRole="Comuna" ToRole="Direccion" />
+  </EntityType>
+  <EntityType Name="Direccion">
+    <Key>
+      <PropertyRef Name="dire_id" />
+    </Key>
+    <Property Name="dire_id" Type="Int32" Nullable="false" />
+    <Property Name="dire_calle1" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dire_calle2" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="dire_clie_id" Type="Int32" Nullable="false" />
+    <Property Name="dire_comu_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Direccion_Cliente" FromRole="Direccion" ToRole="Cliente" />
+    <NavigationProperty Name="Comuna" Relationship="Self.FK_Direccion_Comuna" FromRole="Direccion" ToRole="Comuna" />
+  </EntityType>
+  <EntityType Name="Medio_Pago">
+    <Key>
+      <PropertyRef Name="medi_id" />
+    </Key>
+    <Property Name="medi_id" Type="Int32" Nullable="false" />
+    <Property Name="medi_tipo" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Orden_Compra" Relationship="Self.FK_Orden_Compra_Medio_Pago" FromRole="Medio_Pago" ToRole="Orden_Compra" />
+  </EntityType>
+  <EntityType Name="Orden_Compra">
+    <Key>
+      <PropertyRef Name="orde_compra" />
+    </Key>
+    <Property Name="orde_compra" Type="Int32" Nullable="false" />
+    <Property Name="orde_fecha" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="orde_clie_id" Type="Int32" Nullable="false" />
+    <Property Name="orde_medi_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Medio_Pago" Relationship="Self.FK_Orden_Compra_Medio_Pago" FromRole="Orden_Compra" ToRole="Medio_Pago" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Orden_Compra" FromRole="Orden_Compra" ToRole="Detalle" />
+  </EntityType>
+  <EntityType Name="Productos">
+    <Key>
+      <PropertyRef Name="prod_id" />
+    </Key>
+    <Property Name="prod_id" Type="Int32" Nullable="false" />
+    <Property Name="prod_cora" Type="Int32" />
+    <Property Name="prod_pulm" Type="Int32" />
+    <Property Name="prod_rinon" Type="Int32" />
+    <Property Name="prod_corn" Type="Int32" />
+    <Property Name="prod_clie_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Cliente" Relationship="Self.FK_Productos_Cliente" FromRole="Productos" ToRole="Cliente" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Productos" FromRole="Productos" ToRole="Detalle" />
+  </EntityType>
+  <EntityType Name="Sangre">
+    <Key>
+      <PropertyRef Name="sang_id" />
+    </Key>
+    <Property Name="sang_id" Type="Int32" Nullable="false" />
+    <Property Name="sang_tipo" Type="String" MaxLength="4" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="sang_cant" Type="Int32" Nullable="false" />
+    <Property Name="sang_infec" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Sangre" FromRole="Sangre" ToRole="Detalle" />
+  </EntityType>
+  <EntityType Name="Servicio">
+    <Key>
+      <PropertyRef Name="serv_id" />
+    </Key>
+    <Property Name="serv_id" Type="Int32" Nullable="false" />
+    <Property Name="serv_prec" Type="Int32" Nullable="false" />
+    <Property Name="serv_vend_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Detalle" Relationship="Self.FK_Detalle_Servicio" FromRole="Servicio" ToRole="Detalle" />
+    <NavigationProperty Name="Vendedor" Relationship="Self.FK_Servicio_Vendedor" FromRole="Servicio" ToRole="Vendedor" />
+  </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="principal_id" Type="Int32" Nullable="false" />
+    <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="version" Type="Int32" />
+    <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+  </EntityType>
+  <EntityType Name="Vendedor">
+    <Key>
+      <PropertyRef Name="vend_id" />
+    </Key>
+    <Property Name="vend_id" Type="Int32" Nullable="false" />
+    <Property Name="vend_nick" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="vend_email" Type="String" MaxLength="45" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="vend_clave" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+    <NavigationProperty Name="Servicio" Relationship="Self.FK_Servicio_Vendedor" FromRole="Vendedor" ToRole="Servicio" />
+  </EntityType>
+  <EntityType Name="Detalle">
+    <Key>
+      <PropertyRef Name="detal_prod" />
+      <PropertyRef Name="detal_comp_id" />
+      <PropertyRef Name="detal_prod_id" />
+      <PropertyRef Name="detal_serv_id" />
+      <PropertyRef Name="detal_sang_id" />
+    </Key>
+    <Property Name="detal_prod" Type="Int32" Nullable="false" />
+    <Property Name="detal_comp_id" Type="Int32" Nullable="false" />
+    <Property Name="detal_prod_id" Type="Int32" Nullable="false" />
+    <Property Name="detal_serv_id" Type="Int32" Nullable="false" />
+    <Property Name="detal_sang_id" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="Orden_Compra" Relationship="Self.FK_Detalle_Orden_Compra" FromRole="Detalle" ToRole="Orden_Compra" />
+    <NavigationProperty Name="Productos" Relationship="Self.FK_Detalle_Productos" FromRole="Detalle" ToRole="Productos" />
+    <NavigationProperty Name="Sangre" Relationship="Self.FK_Detalle_Sangre" FromRole="Detalle" ToRole="Sangre" />
+    <NavigationProperty Name="Servicio" Relationship="Self.FK_Detalle_Servicio" FromRole="Detalle" ToRole="Servicio" />
+  </EntityType>
+  <Association Name="FK_Direccion_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="clie_id" />
+      </Principal>
+      <Dependent Role="Direccion">
+        <PropertyRef Name="dire_clie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Productos_Cliente">
+    <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
+    <End Role="Productos" Type="Self.Productos" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Cliente">
+        <PropertyRef Name="clie_id" />
+      </Principal>
+      <Dependent Role="Productos">
+        <PropertyRef Name="prod_clie_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Direccion_Comuna">
+    <End Role="Comuna" Type="Self.Comuna" Multiplicity="1" />
+    <End Role="Direccion" Type="Self.Direccion" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Comuna">
+        <PropertyRef Name="comu_id" />
+      </Principal>
+      <Dependent Role="Direccion">
+        <PropertyRef Name="dire_comu_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Orden_Compra_Medio_Pago">
+    <End Role="Medio_Pago" Type="Self.Medio_Pago" Multiplicity="1" />
+    <End Role="Orden_Compra" Type="Self.Orden_Compra" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Medio_Pago">
+        <PropertyRef Name="medi_id" />
+      </Principal>
+      <Dependent Role="Orden_Compra">
+        <PropertyRef Name="orde_medi_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Orden_Compra">
+    <End Role="Orden_Compra" Type="Self.Orden_Compra" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Orden_Compra">
+        <PropertyRef Name="orde_compra" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="detal_comp_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Productos">
+    <End Role="Productos" Type="Self.Productos" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Productos">
+        <PropertyRef Name="prod_id" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="detal_prod_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Sangre">
+    <End Role="Sangre" Type="Self.Sangre" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Sangre">
+        <PropertyRef Name="sang_id" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="detal_sang_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Detalle_Servicio">
+    <End Role="Servicio" Type="Self.Servicio" Multiplicity="1" />
+    <End Role="Detalle" Type="Self.Detalle" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Servicio">
+        <PropertyRef Name="serv_id" />
+      </Principal>
+      <Dependent Role="Detalle">
+        <PropertyRef Name="detal_serv_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_Servicio_Vendedor">
+    <End Role="Vendedor" Type="Self.Vendedor" Multiplicity="1" />
+    <End Role="Servicio" Type="Self.Servicio" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="Vendedor">
+        <PropertyRef Name="vend_id" />
+      </Principal>
+      <Dependent Role="Servicio">
+        <PropertyRef Name="serv_vend_id" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="VentaOrganosEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="Cliente" EntityType="Self.Cliente" />
+    <EntitySet Name="Comuna" EntityType="Self.Comuna" />
+    <EntitySet Name="Direccion" EntityType="Self.Direccion" />
+    <EntitySet Name="Medio_Pago" EntityType="Self.Medio_Pago" />
+    <EntitySet Name="Orden_Compra" EntityType="Self.Orden_Compra" />
+    <EntitySet Name="Productos" EntityType="Self.Productos" />
+    <EntitySet Name="Sangre" EntityType="Self.Sangre" />
+    <EntitySet Name="Servicio" EntityType="Self.Servicio" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+    <EntitySet Name="Vendedor" EntityType="Self.Vendedor" />
+    <EntitySet Name="Detalle" EntityType="Self.Detalle" />
+    <AssociationSet Name="FK_Direccion_Cliente" Association="Self.FK_Direccion_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Direccion" EntitySet="Direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Productos_Cliente" Association="Self.FK_Productos_Cliente">
+      <End Role="Cliente" EntitySet="Cliente" />
+      <End Role="Productos" EntitySet="Productos" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Direccion_Comuna" Association="Self.FK_Direccion_Comuna">
+      <End Role="Comuna" EntitySet="Comuna" />
+      <End Role="Direccion" EntitySet="Direccion" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Orden_Compra_Medio_Pago" Association="Self.FK_Orden_Compra_Medio_Pago">
+      <End Role="Medio_Pago" EntitySet="Medio_Pago" />
+      <End Role="Orden_Compra" EntitySet="Orden_Compra" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Orden_Compra" Association="Self.FK_Detalle_Orden_Compra">
+      <End Role="Orden_Compra" EntitySet="Orden_Compra" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Productos" Association="Self.FK_Detalle_Productos">
+      <End Role="Productos" EntitySet="Productos" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Sangre" Association="Self.FK_Detalle_Sangre">
+      <End Role="Sangre" EntitySet="Sangre" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Detalle_Servicio" Association="Self.FK_Detalle_Servicio">
+      <End Role="Servicio" EntitySet="Servicio" />
+      <End Role="Detalle" EntitySet="Detalle" />
+    </AssociationSet>
+    <AssociationSet Name="FK_Servicio_Vendedor" Association="Self.FK_Servicio_Vendedor">
+      <End Role="Vendedor" EntitySet="Vendedor" />
+      <End Role="Servicio" EntitySet="Servicio" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

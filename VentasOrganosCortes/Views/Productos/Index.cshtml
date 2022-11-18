@@ -1,0 +1,39 @@
+﻿@model List<VentasOrganosCortes.Models.ViewModels.ListProductosViewModel>
+@{
+    ViewBag.Title = "Mis datos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Calle 1</th>
+                <th>Calle 2</th>
+                <th>ID Cliente</th>
+                <th>ID Comuna</th>
+                <th></th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Id</td>
+                    <td>@oElemento.Cora</td>
+                    <td>@oElemento.Pulmon</td>
+                    <td>@oElemento.Rinon</td>
+                    <td>@oElemento.Cornea</td>
+                    <td>@oElemento.Pulmon</td>
+                    <td>
+                        <a class="btn btn-link" href="~/Productos/Editar/@oElemento.Id">Editar</a>
+                        <a class="btn btn-link" href="~/Productos/Eliminar/@oElemento.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="row" style="text-align:right;padding:5px;">
+            <a href="~/Productos/Nuevo" class="btn btn-primary">Nuevo</a>
+        </div>
+    </div>
+</div>

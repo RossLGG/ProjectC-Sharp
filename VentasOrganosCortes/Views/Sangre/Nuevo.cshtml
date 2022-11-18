@@ -1,0 +1,27 @@
+﻿@model VentasOrganosCortes.Models.ViewModels.TablaViewModel8
+@{
+    ViewBag.Title = "Nuevo";
+}
+
+<h2>@ViewBag.Title</h2>
+
+
+@using (Html.BeginForm("Nuevo", "Sangre", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.LabelFor(x => x.Id)
+            @Html.TextBoxFor(x => x.Id, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Tipo)
+            @Html.TextBoxFor(x => x.Tipo, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Cant)
+            @Html.TextBoxFor(x => x.Cant, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Infectada)
+            @Html.TextBoxFor(x => x.Infectada, "", new { @class = "form-control" })
+
+            <div style="text-align:left;padding:10px;">
+                <input value="Guardar" type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

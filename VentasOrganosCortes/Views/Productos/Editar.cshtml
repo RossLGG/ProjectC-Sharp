@@ -1,0 +1,31 @@
+﻿@model VentasOrganosCortes.Models.ViewModels.TablaViewModel4
+@{
+    ViewBag.Title = "Editar";
+}
+
+<h2>Editar</h2>
+
+@using (Html.BeginForm("Editar", "Productos", FormMethod.Post))
+{
+    <div class="row">
+        <div class="col-md-12">
+            @Html.HiddenFor(x => x.Id);
+            @Html.LabelFor(x => x.Id)
+            @Html.TextBoxFor(x => x.Id, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Cora)
+            @Html.TextBoxFor(x => x.Cora, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Pulmon)
+            @Html.TextBoxFor(x => x.Pulmon, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Rinon)
+            @Html.TextBoxFor(x => x.Rinon, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Cornea)
+            @Html.TextBoxFor(x => x.Cornea, "", new { @class = "form-control" })
+            @Html.LabelFor(x => x.Id_Clie)
+            @Html.TextBoxFor(x => x.Id_Clie, "", new { @class = "form-control" })
+
+            <div style="text-align:left;padding:10px;">
+                <input value="Guardar" type="submit" class="btn btn-primary" />
+            </div>
+        </div>
+    </div>
+}

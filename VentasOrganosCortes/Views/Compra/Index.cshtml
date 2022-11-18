@@ -1,0 +1,36 @@
+﻿@model List<VentasOrganosCortes.Models.ViewModels.ListCompraViewModel>
+@{
+    ViewBag.Title = "Mis datos";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<div class="row">
+    <div class="col-md-12">
+        <table class="table">
+            <tr>
+                <th>ID</th>
+                <th>Fecha</th>
+                <th>ID Cliente</th>
+                <th>ID Medio de pago</th>
+                <th></th>
+            </tr>
+            @foreach (var oElemento in Model)
+            {
+                <tr>
+                    <td>@oElemento.Id</td>
+                    <td>@oElemento.Fecha</td>
+                    <td>@oElemento.Id_Clie</td>
+                    <td>@oElemento.Id_Medio</td>
+                    <td>
+                        <a class="btn btn-link" href="~/Compra/Editar/@oElemento.Id">Editar</a>
+                        <a class="btn btn-link" href="~/Compra/Eliminar/@oElemento.Id">Eliminar</a>
+                    </td>
+                </tr>
+            }
+        </table>
+        <div class="row" style="text-align:right;padding:5px;">
+            <a href="~/Compra/Nuevo" class="btn btn-primary">Nuevo</a>
+        </div>
+    </div>
+</div>
